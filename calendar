@@ -1,0 +1,27 @@
+def add_time(a, b, c=''):
+    zz = a.split(' ')
+    result_1 = b.split(':')
+    result = zz[0].split(':')
+    calendar = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    if zz[1] == 'PM':
+        res_all = str(int(result[0]) + int(result_1[0])) + ':' + str(int(result[1]) + int(result_1[1])) + ' ' + str(zz[1])
+        print(res_all + ', ' + c)
+    elif zz[1] == 'AM':
+        if (int(result[0]) + int(result_1[0])) > 12:
+            if (int(result[1]) + int(result_1[1])) > 60:
+                res_all = str(((int(result[0]) + int(result_1[0])) % 12)) + ':' + ('%02d' %(int(result[1]) + int(result_1[1]) - 60)) + ' ' + 'PM'
+                c = ((int(result[0]) + int(result_1[0])))
+            else:
+                x = len(c)
+                if x != 0:
+                    day = c
+                    joj = str(round((int(result[0]) + int(result_1[0]))/24))
+                    if day in calendar:
+                        ff = calendar.index(day)
+                    res_all = str(((int(result[0]) + int(result_1[0])) % 12)) + ':' + str(int(result[1]) + int(result_1[1])) + ' ' + 'PM'
+                    c = '('+ joj + ' days later)'
+                    if int(joj) > 8:
+                        zzz = int(joj) % 7
+                    print(res_all + ', ' + calendar[zzz] + ' ' + c)
+
+add_time('6:30 AM', '205:12', 'Monday')
